@@ -1,0 +1,180 @@
+// REQUIRED ITEMS
+enableDebugConsole = 1;
+respawnOnStart = -1;
+
+// MISSION DETAILS
+class Header
+{
+    gameType   = COOP;
+    minPlayers = 1;
+    maxPlayers = 71; // Including Zeus Slots
+};
+
+// MISSION NAME
+onLoadName    = "COOP ## Mission Template";
+onLoadMission = "";
+author        = "Scofer";
+loadScreen = "";
+
+// RESPAWN - Leave as is, unless important to change.
+respawn = "BASE";
+respawnTemplates[] = {"ace_spectator","BASE"};
+respawnDelay = 999999;
+
+// Mission End Config
+class CfgDebriefing {
+    class Victory {
+        title = "Void Mission Template";
+        subtitle = "Victory";
+        description = "You win";
+        pictureBackground = "";
+    };
+    class Defeat {
+        title = "Void Mission Template";
+        subtitle = "Defeat";
+        description = "You lose";
+        pictureBackground = "";
+    };
+};
+
+/* ===============================================
+    FORITIFY
+     - Must include Fortify module in Editor.
+	 - Remove if unneeded for building defenses.
+*/
+class ACEX_Fortify_Presets {
+    class VoidObjects {
+        displayName = "Void";
+        objects[] = {
+			{"Land_BagBunker_large_F", 100}, 
+			{"Land_BagBunker_small_F", 50}, 
+			{"Land_BagFence_round_F", 10}, 
+			{"Land_BagFence_Long_F", 10}, 
+			{"Land_BagFence_01_short_F", 5},
+			{"Land_Plank_01_4m_F", 10},
+			{"Land_SandbagBarricade_01_F", 25},
+			{"Land_SandbagBarricade_01_hole_F", 25}, 
+			{"Land_fort_rampart_EP1", 50},
+			{"Land_HBarrierWall6_F", 75},
+			{"Land_HBarrierTower_F", 100},
+			{"Land_HBarrierWall4_F", 50},
+			{"Land_HBarrierWall_corner_F", 50}
+        };
+    };
+};
+
+//You won't need to do anything beyond this point
+// MISSION FUNCTIONS
+class CfgFunctions {
+    class VMF {
+        class preInit {
+            class preInit {
+                file = "preInit\fnc_preInit.sqf";
+                preInit = 1;
+            };
+        };
+        class acre {
+            class addRadio {
+                file = "acre\fnc_addRadio.sqf";
+            };
+        };
+        class adminMenu {
+            class missionStartDialog {
+                file = "adminMenu\fnc_missionStartDialog.sqf";
+            };
+            class missionStart {
+                file = "adminMenu\fnc_missionStart.sqf";
+            };
+            class zeusHint {
+                file = "adminMenu\fnc_zeusHint.sqf";
+            };
+        };
+        class safeStart {
+            class safeStartInit {
+                file = "safeStart\fnc_safeStartInit.sqf";
+            };
+        };
+        class medical {
+            class medicalNotification {
+                file = "medical\fnc_medicalNotification.sqf";
+            };
+        };
+        class arsenal {
+            class addArsenal {
+                file = "arsenal\fnc_addArsenal.sqf";
+            };
+        };
+        class bftTeam {
+            class teamMarkers_loop {
+                file = "bftTeam\fnc_teamMarkers_loop.sqf";
+            };
+            class markerColour {
+                file = "bftTeam\fnc_markerColour.sqf";
+            };
+            class disableTeamMarkers {
+                file = "bftTeam\fnc_disableTeamMarkers.sqf";
+            };
+        };
+        class bftGroup {
+            class groupMarkers_loop {
+                file = "bftGroup\fnc_groupMarkers_loop.sqf";
+            };
+            class disableGroupMarkers {
+                file = "bftGroup\fnc_disableGroupMarkers.sqf";
+            };
+            class vehicleType {
+                file = "bftGroup\fnc_vehicleType.sqf";
+            };
+        };
+        class eventSystem {
+            class addEvent {
+                file = "eventSystem\fnc_addEvent.sqf";
+            };
+            class callEventDialog {
+                file = "eventSystem\fnc_callEventDialog.sqf";
+            };
+            class removeEvent {
+                file = "eventSystem\fnc_removeEvent.sqf";
+            };
+            class missionUpdate {
+                file = "eventSystem\fnc_missionUpdate.sqf";
+            };
+        };
+        class customStuff {
+            class showSubtitle {
+                file = "custom\fnc_showSubtitle.sqf";
+            };
+            class subtitles {
+                file = "custom\fnc_subtitles.sqf";
+            };
+            class widescreen {
+                file = "custom\fnc_widescreen.sqf";
+            };
+            class battlefieldSounds {
+                file = "custom\fnc_battlefieldSounds.sqf";
+            };
+            class deleteVehicle {
+                file = "custom\fnc_deleteVehicle.sqf";
+            };
+            class playerParadrop {
+                file = "custom\fnc_playerParadrop.sqf";
+            };
+            class playerParadropLocal {
+                file = "custom\fnc_playerParadropLocal.sqf";
+            };
+            class crateParadrop {
+                file = "custom\fnc_crateParadrop.sqf";
+            };
+            class fadeEffect {
+                file = "custom\fnc_fadeEffect.sqf";
+            };
+        };
+    };
+};
+
+// MISSION UI
+class RscTitles {
+    #include "safeStart.h"
+    #include "subtitles.h"
+    #include "widescreen.h"
+};
