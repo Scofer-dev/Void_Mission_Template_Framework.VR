@@ -21,6 +21,16 @@ respawn = "BASE";
 respawnTemplates[] = {"ace_spectator","BASE"};
 respawnDelay = 999999;
 
+// GARBAGE COLLECTOR
+corpseManagerMode = 1;
+corpseLimit = 20;
+corpseRemovalMinTime = 30;
+corpseRemovalMaxTime = 300;
+wreckLimit = 15;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 300;
+minPlayerDistance = 0;
+
 // Mission End Config
 class CfgDebriefing {
     class Victory {
