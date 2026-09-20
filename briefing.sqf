@@ -10,19 +10,29 @@
      - Outline of what is going on, where we are and what has happened before the mission has started? This needs to contain any relevant background information.
      - Draw attention to friendly and enemy forces in the area. The commander will make important decisions based off this information.
      - Outline present weather conditions, players will typically assume that it is daylight with sunny weather.
+
+    Marker Colour Classes
+    https://community.bistudio.com/wiki/Arma_3:_CfgMarkerColors
+    Use HTML code
 */
+
 
 private _situation = ["diary", ["Situation","
 *** Insert general information per the above description.***
 <br/><br/>
-<font size='18'>ENEMY FORCES</font>
-<br/>
-*** Provide information on enemy forces.***
+
+<font size='18'>WEATHER</font>
+*** Some details of weather conditions, can be removed if unwanted
 <br/><br/>
 
-<font size='18'>FRIENDLY FORCES</font>
+<font size='18' color='#004C99'>FRIENDLY FORCES</font>
 <br/>
 *** Detail friendly forces that are external to the playable force. ***
+<br/><br/>
+
+<font size='18' color='#800000'>ENEMY FORCES</font>
+<br/>
+*** Provide information on enemy forces.***
 "]];
 
 /* ===============================================
@@ -81,7 +91,7 @@ private _execution = ["diary", ["Execution","
 
 private _administration = ["diary", ["Administration","
 <font size='18'>RESPAWN</font><br/>
-*** Insert respawn details here ***
+Respawn may be available by admin discretion, however it is not to be expected.
 <br/><br/>
 
 <font size='18'>RESUPPLY</font><br/>
@@ -115,7 +125,7 @@ Background music will play at certain parts of the mission. If you wish to hear 
 */
 
 private _notes = ["diary", ["Admin Notes","
-*** Insert any additional notes for session host or admins. ***
+*** Insert any additional notes for session zeus' or admin. ***
 "]];
 
 if (playerSide == sideLogic || {!isMultiplayer || (call BIS_fnc_admin) > 0}) then {

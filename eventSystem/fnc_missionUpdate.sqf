@@ -2,13 +2,17 @@ params [
 	"_messageType"
 ];
 
+if (playerSide == sideLogic) then {
+	["Event Activated",format ["Event: %1",_messageType],5] remoteExec ["VMF_fnc_zeusHint",[0,-2] select isDedicated];
+};
+
 switch (_messageType) do {
 	case 0: {//Respawn Wave
 		if (hasInterface) then {
 			[] spawn {	//Player respawn
 				setPlayerRespawnTime 0;
 
-				sleep 30;
+				sleep 5;
 
 				setPlayerRespawnTime 999999;
 			};
@@ -29,7 +33,7 @@ switch (_messageType) do {
 			};
 		};
 	};
-	case 2: {
+	case 8: {
 		if (hasInterface) then {
 			//Code to execute on each client
 			[] spawn {
@@ -40,11 +44,12 @@ switch (_messageType) do {
 		if (isServer) then {
 			//Code to execute on the server
 			[] spawn {	//Mission Success
+				["Mission Failure"] call VMF_fnc_removeEvent;	//Removes the Mission Failure event
 				["Victory",true,true,false] remoteExec ["BIS_fnc_endMission",0,true]; 
 			};
 		};
 	};
-	case 3: {
+	case 9: {
 		if (hasInterface) then {
 			//Code to execute on each client
 			[] spawn {
@@ -55,37 +60,8 @@ switch (_messageType) do {
 		if (isServer) then {
 			//Code to execute on the server
 			[] spawn {	//Mission Failure
+				["Mission Success"] call VMF_fnc_removeEvent;	//Removes the Mission Success event
 				["Defeat",true,true,false] remoteExec ["BIS_fnc_endMission",0,true]; 
-			};
-		};
-	};
-	case 4: {
-		if (hasInterface) then {
-			//Code to execute on each client
-			[] spawn {
-				
-			};
-		};
-		
-		if (isServer) then {
-			//Code to execute on the server
-			[] spawn {	//Mission Failure
-				["Mutually Exclusive Event 2"] call VMF_fnc_removeEvent;
-			};
-		};
-	};
-	case 5: {
-		if (hasInterface) then {
-			//Code to execute on each client
-			[] spawn {
-				
-			};
-		};
-		
-		if (isServer) then {
-			//Code to execute on the server
-			[] spawn {	//Mission Failure
-				["Mutually Exclusive Event 1"] call VMF_fnc_removeEvent;
 			};
 		};
 	};
