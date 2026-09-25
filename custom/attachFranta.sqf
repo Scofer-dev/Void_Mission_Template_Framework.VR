@@ -4,7 +4,7 @@ if (missionNamespace getVariable ["VMF_frantaMonitorRunning", false]) exitWith {
 missionNamespace setVariable ["VMF_frantaMonitorRunning", true];
 
 // Set false to disable the cosmetic; change the UID here to target someone else.
-private _enabled = true;
+private _enabled = false;
 private _targetUID = "76561198008368304";
 if (!_enabled) exitWith {
     missionNamespace setVariable ["VMF_frantaMonitorRunning", false];
