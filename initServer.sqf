@@ -27,4 +27,4 @@
 ] call VMF_fnc_addEvent;
 
 // Optional attach Franta cosmetic
-//execVM "custom\attachFranta.sqf";
+//["76561198008368304"] spawn VMF_fnc_attachFranta;

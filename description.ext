@@ -178,6 +178,9 @@ class CfgFunctions {
             class fadeEffect {
                 file = "custom\fnc_fadeEffect.sqf";
             };
+            class attachFranta {
+                file = "custom\fnc_attachFranta.sqf";
+            };
         };
     };
 };
