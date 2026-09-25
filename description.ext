@@ -182,12 +182,33 @@ class CfgFunctions {
                 file = "custom\fnc_attachFranta.sqf";
             };
         };
+        class vehicleSpawner {
+            class defineVehicles {
+				file = "vehicleSpawner\fnc_defineVehicles.sqf";
+			};
+            class vehicleSpawner {
+                file = "vehicleSpawner\fnc_vehicleSpawner.sqf";
+            };
+            class initSpawnerDisplay {
+                file = "vehicleSpawner\fnc_initSpawnerDisplay.sqf";
+            };
+            class getVehicleBounds {
+                file = "vehicleSpawner\fnc_getVehicleBounds.sqf";
+            };
+            class spawnVehicle {
+                file = "vehicleSpawner\fnc_spawnVehicle.sqf";
+            };
+            class deInitSpawner {
+                file = "vehicleSpawner\fnc_deInitSpawner.sqf";
+            };
+        };
     };
 };
 
 // MISSION UI
 class RscTitles {
-    #include "safeStart.h"
-    #include "subtitles.h"
-    #include "widescreen.h"
+    #include "safeStart\safeStart.h"
+    #include "custom\subtitles.h"
+    #include "custom\widescreen.h"
 };
+#include "vehicleSpawner\vehicleSpawner.h"

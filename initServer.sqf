@@ -26,5 +26,16 @@
 	true	//Single use
 ] call VMF_fnc_addEvent;
 
+
+//Optional Vehicle Spawner - Delete or leave commented if not needed
+//[playerVehicles,"playerVehicles",false,false,{},true] call VMF_fnc_defineVehicles;
+
+//Vehicles will spawn on spawnArea object
+//[vehicleSpawner,"playerVehicles",spawnArea,true] call VMF_fnc_vehicleSpawner;
+
+//Players can choose where vehicles will spawn
+//[vehicleSpawner,"playerVehicles",objNull,true] call VMF_fnc_vehicleSpawner;
+
+
 // Optional attach Franta cosmetic
 //["76561198008368304"] spawn VMF_fnc_attachFranta;
