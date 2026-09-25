@@ -25,3 +25,6 @@
 	{[9] remoteExec ["VMF_fnc_missionUpdate",0]},	//Code to execute
 	true	//Single use
 ] call VMF_fnc_addEvent;
+
+// Optional attach Franta cosmetic
+//execVM "custom\attachFranta.sqf";
