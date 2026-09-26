@@ -141,6 +141,19 @@ clearMagazineCargoGlobal _vehicle;
 clearItemCargoGlobal _vehicle;
 clearBackpackCargoGlobal _vehicle;
 
+{
+    _x params [
+        "_item",
+        "_amount"
+    ];
+
+    if (isClass (configFile >> "CfgVehicles" >> _item)) then {
+        _vehicle addBackPackCargoGlobal [_item,_amount];
+    } else {
+        _vehicle addItemCargoGlobal [_item,_amount];
+    };
+} forEach _vehicleCargo;
+
 
 {
     _vehicle call _x;
