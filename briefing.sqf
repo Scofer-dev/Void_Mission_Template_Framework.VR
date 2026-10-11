@@ -45,13 +45,13 @@ private _situation = ["diary", ["Situation","
 private _mission = ["diary", ["Mission","
 *** Provide a short summary of the mission objectives here. ***
 <br/><br/>
-<font size='18'>PRIMARY OBJECTIVES</font>
+<font size='18' color='#C7A84A'>PRIMARY OBJECTIVES</font>
 <br/>
 - Primary Objective #1<br/>
 - Primary Objective #2
 <br/><br/>
 
-<font size='18'>SECONDARY OBJECTIVES</font>
+<font size='18' color='#8FA3B8'>SECONDARY OBJECTIVES</font>
 <br/>
 - N/A
 "]];
@@ -119,19 +119,38 @@ Background music will play at certain parts of the mission. If you wish to hear 
 "]];
 
 /* ===============================================
+    Credits
+     - 
+*/
+
+private _credits = ["diary", ["Credits","
+<br/>
+<font size='18'>SPECIAL THANKS</font>
+<br/>
+*** Credit yourself or others who made this scenario. ***
+<br/><br/>
+
+"]];
+
+/* ===============================================
 	NOTES
 	 - Any notes for administrators or session hosts.
 	 - Items for all players in regards to specific tool or script function.
 */
 
 private _notes = ["diary", ["Admin Notes","
-*** Insert any additional notes for session zeus' or admin. ***
+<font size='18'>HOST NOTES</font>
+*** Insert any additional notes for session Zeus or admin. ***
+<br/><br/>
+<font size='18'>WIN CONDITIONS</font><br/>
+*** Insert the potential outcomes and how this mission ends in win or fail. ***
 "]];
 
 if (playerSide == sideLogic || {!isMultiplayer || (call BIS_fnc_admin) > 0}) then {
     player createDiaryRecord _notes;
 };
 
+player createDiaryRecord _credits;
 player createDiaryRecord _administration;
 player createDiaryRecord _execution;
 player createDiaryRecord _mission;
