@@ -18,10 +18,10 @@ Parameters:
 
 Examples:
 	Let player choose a vehicle from the predefined VehiclePool, and vehicle will spawn on vehicleSpawnPos
-	[vehicleSpawner,"VehiclePool",vehicleSpawnPos] call VMF_fnc_spawnVehicleDialog
+	[vehicleSpawner,"VehiclePool",vehicleSpawnPos] call VMF_fnc_vehicleSpawner;
 
 	Let player choose a vehicle from the predefined VehiclePool, and player can choose where to spawn it
-	[vehicleSpawner,"VehiclePool"] call VMF_fnc_spawnVehicleDialog 
+	[vehicleSpawner,"VehiclePool"] call VMF_fnc_vehicleSpawner; 
     
 Returns:
     Nothing
