@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: VMF_fnc_addPlayerArsenal
+Function: VMF_fnc_addArsenal
 
 Description:
     Adds ACE custom arsenal to each player, giving them access to all equipment they start with, and any additional gear as a parameter
