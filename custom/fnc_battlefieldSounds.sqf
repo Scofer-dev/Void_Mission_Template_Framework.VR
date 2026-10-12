@@ -1,3 +1,40 @@
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_battlefieldSounds
+
+Description:
+	Plays battlefield sounds for players
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+	0: Enable Firefight Sounds Array <Bool>
+	1: Enable Explosion Sounds Array <Bool>
+	2: Enables Aircraft Sounds Array <Bool>
+
+Example:
+	[
+		true,
+		true,
+		false
+	] spawn VMF_fnc_battlefieldSounds;
+
+	[
+		true,
+		true,
+		false
+	] remoteExec ["VMF_fnc_battlefieldSounds",[0,-2] select isDedicated];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
+if !(hasInterface) exitWith {};
+
 params [
 	["_enableFirefightSounds",true,[true]],
 	["_enableExplosionSounds",true,[true]],

@@ -1,3 +1,37 @@
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_showSubtitle
+
+Description:
+	Modified version of BIS_fnc_showSubtitle to use custom subtitle display, cutting out bits superfluous to the custom display
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+	0: Speaker <String>
+	1: Text <String>
+
+Example:
+	[
+		"ION HQ",
+		"Knight Flight, clear for take-off"
+	] spawn VMF_fnc_showSubtitle;
+
+	[
+		"ION HQ",
+		"Knight Flight, clear for take-off"
+	] remoteExec ["VMF_fnc_showSubtitle",[0,-2] select isDedicated];
+
+Returns:
+    Nothing
+
+Author:
+	Thomas Ryan, updated by Karel Moricky, modified by Scofer
+---------------------------------------------------------------------------- */
+if !(hasInterface) exitWith {};
+
 params [
 	["_title","",[""]],
 	["_text","",[""]]

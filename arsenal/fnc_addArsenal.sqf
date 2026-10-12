@@ -1,14 +1,32 @@
-//
-// Function: VMF_fnc_addArsenal
-// Author: Scofer
-// Description: Adds ACE custom arsenal to each player, giving them access to all equipment they start with, and any additional gear as a parameter
-// Intended Locality: Player
-//
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_addPlayerArsenal
+
+Description:
+    Adds ACE custom arsenal to each player, giving them access to all equipment they start with, and any additional gear as a parameter
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+   	0: Gear Classnames <Array>
+
+Example:
+	_arsenalArray = call compile preprocessFileLineNumbers "arsenalArrays.sqf";
+	[_arsenalArray] spawn VMF_fnc_addArsenal;
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 if (playerSide == sideLogic) exitWith {};
 
 params [
-	["_gearArray",[""]]
+	["_gearArray",[""],[[]]]
 ];
 
 //These can all be done as a single line, but this is neater

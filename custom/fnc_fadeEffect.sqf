@@ -1,10 +1,33 @@
-/*
-	Slightly customised version of BIS_fnc_fadeEffect 
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_fadeEffect
 
-	[0,"BLACK",5,1,"bloodOnTheRisers"] spawn BIS_fnc_fadeEffect; = [true,"BLACK",5,true,"bloodOnTheRisers"] spawn VMF_fnc_fadeEffect;
+Description:
+	Modified version of BIS_fnc_fadeEffect to replace titleCut with cutText so it would have a defined layer
 
-	[1,"BLACK",5] spawn BIS_fnc_fadeEffect; = [false,"BLACK",5] spawn VMF_fnc_fadeEffect;
-*/
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+	0: Fade In <Bool>			Default: true
+	1: Fade Colour <String>		Default: "BLACK"	Only accepts "BLACK" or "WHITE"
+	2: Fade Duration <Number>	Default: 0
+	3: Blur <Bool>				Default: false
+	4: Music <String>			Default: ""
+
+Example:
+	[true,"BLACK",5,true,"LeadTrack01b_F_EXP"] spawn VMF_fnc_fadeEffect;
+
+	[false,"BLACK",5] remoteExec ["VMF_fnc_fadeEffect",[0,-2] select isDedicated];
+
+Returns:
+    Nothing
+
+Author:
+	Thomas Ryan, modified by Killzone_Kid, further modified by Scofer
+---------------------------------------------------------------------------- */
+if !(hasInterface) exitWith {};
 
 params [
 	["_fadeIn",true,[true]],

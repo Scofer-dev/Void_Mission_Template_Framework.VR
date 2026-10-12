@@ -1,11 +1,30 @@
-//
-// Function: VMF_fnc_missionStart
-// Author: Scofer
-// Description: Sets the mission to live by flipping several variables, and displays a hint to all players
-// Intended Locality: Server
-//
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_missionStart
+
+Description:
+    Sets the mission state to live by flipping several variables, and displays a hint to all players
+
+Execution:
+	- Local: No
+	- Server: Yes
+	- Global: No
+
+Parameters:
+    0: Global hint message
+
+Example:
+	["Mission is Live"] call VMF_fnc_missionStart;
+
+	["Mission is Live"] remoteExec ["VMF_fnc_missionStart",2];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 params [
-	"_hintMessage"
+	["_hintMessage","",[""]]
 ];
 
 //If the mission has already been set to live, don't send the global hint

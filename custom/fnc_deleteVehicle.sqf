@@ -1,11 +1,31 @@
-/*
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_deleteVehicle
+
+Description:
 	Deletes a vehicle and all its crew
 
-	Must pass the group leader to the function.
+Execution:
+	- Local: Yes
+	- Server: Yes
+	- Global: No
 
-	Can be done in waypoints with [this] call VMF_fnc_deleteVehicle;
+Parameters:
+	0: Group Leader <Object>
 
-*/
+Example:
+	[tankCommander] call VMF_fnc_deleteVehicle;
+
+	[vehicleLeader] remoteExec ["VMF_fnc_deleteVehicle",vehicleLeader];
+
+	Waypoint:
+	[this] call VMF_fnc_deleteVehicle
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 params [
 	["_groupLeader",objNull,[objNull]]
 ];

@@ -1,9 +1,26 @@
-//
-// Function: VMF_fnc_safeStartInit
-// Author: Scofer
-// Description: Activates safeStart for the local client. If JIP checks if safeStart is disabled on the server
-// Locality: Player
-//
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_safeStartInit
+
+Description:
+    Activates Safe Start for each client if it's enabled, and the mission hasn't gone live
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: No
+
+Parameters:
+    0: Player Unit <Object>
+
+Example:
+	[_playerUnit] remoteExec ["VMF_fnc_safeStartInit",_playerUnit];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
 params [

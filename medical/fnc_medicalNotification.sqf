@@ -4,6 +4,31 @@
 // Description: Adds CBA eventHandler to players, which tells other players if they're treating them
 // Intended Locality: Player
 //
+
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_medicalNotification
+
+Description:
+	Adds CBA eventHandler to players, which displays notification to player when ACE medical is used on them, and by who
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+    N/A
+
+Example:
+	call VMF_fnc_displayNotification;
+
+	[] remoteExec ["VMF_fnc_displayNotification",[0,-2] select isDedicated];
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if (hasInterface) then {	//This event fires locally to the player doing the treating
 	["ace_treatmentStarted",{
 		params [
