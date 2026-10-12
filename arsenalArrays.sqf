@@ -186,7 +186,6 @@ private _itemArray = [
 	"ACE_morphine",
 	"ACE_splint",
 	"ACE_tourniquet",
-	"ACRE_PRC343",
 	"ACE_artilleryTable",
 	"ACE_MapTools",
 	"acex_intelitems_notepad",
