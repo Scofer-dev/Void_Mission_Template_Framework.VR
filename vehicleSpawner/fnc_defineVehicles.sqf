@@ -35,7 +35,7 @@ Parameters:
 
 Examples:
 	Define vehicles synchronised to object playerVehicles with minimum parameters
-	[playerVehicles] call VMF_fnc_defineVehicles
+	[playerVehicles] call VMF_fnc_defineVehicles;
 
 	Define vehicles synchronised to object playerVehicles with custom parameterss
 	[
@@ -45,7 +45,7 @@ Examples:
 		true,
 		{_this setDamage 0.5},
 		false
-	] call VMF_fnc_defineVehiclesne 
+	] call VMF_fnc_defineVehicles;
     
 Returns:
     Vehicle Data <Array>
