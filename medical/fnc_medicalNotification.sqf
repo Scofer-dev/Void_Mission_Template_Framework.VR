@@ -1,10 +1,3 @@
-//
-// Function: VMF_fnc_medicalNotification
-// Author: Scofer
-// Description: Adds CBA eventHandler to players, which tells other players if they're treating them
-// Intended Locality: Player
-//
-
 /* ----------------------------------------------------------------------------
 Function: VMF_fnc_medicalNotification
 
