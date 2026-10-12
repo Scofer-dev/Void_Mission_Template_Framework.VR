@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: VMF_fnc_teamMarkerColour
+Function: VMF_fnc_markerColour
 
 Description:
     Checks what colour a units team BFT marker should be based on their assigned team colour
@@ -14,7 +14,7 @@ Parameters:
     0: Unit <Object>
 
 Example:
-	[playerOne] call VMF_fnc_teamMarkerColour;
+	[playerOne] call VMF_fnc_markerColour;
 
 Returns:
     Marker colour name string

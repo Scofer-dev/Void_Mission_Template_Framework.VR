@@ -91,7 +91,7 @@ if !(missionNamespace getVariable ["VMF_teamBFT_activeLoop",false]) then {
 				_unit setVariable ["VMF_teamBFTMarker",_marker];
 			};
 
-			_marker setMarkerColorLocal ([_unit] call VMF_fnc_teamMarkerColour);
+			_marker setMarkerColorLocal ([_unit] call VMF_fnc_markerColour);
 			_marker setMarkerPosLocal position _unit;
 			_marker setMarkerDirLocal getDir _unit;
 		} forEach (units _group);

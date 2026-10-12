@@ -118,8 +118,8 @@ class CfgFunctions {
             class teamMarkers {
                 file = "bftTeam\fnc_teamMarkers.sqf";
             };
-            class teamMarkerColour {
-                file = "bftTeam\fnc_teamMarkerColour.sqf";
+            class markerColour {
+                file = "bftTeam\fnc_markerColour.sqf";
             };
             class disableTeamMarkers {
                 file = "bftTeam\fnc_disableTeamMarkers.sqf";
