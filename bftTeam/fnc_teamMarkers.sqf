@@ -1,17 +1,42 @@
-//
-// Function: VMF_fnc_teamMarkers_loop
-// Author: Scofer
-// Description: Creates local markers for team members and theirs their positions and colours every _updateTimer seconds
-// Intended Locality: Server & Player
-//
-missionNamespace setVariable ["VMF_teamBFT_active",true];
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_teamMarkers
 
+Description:
+    Initialises the markers for the players team members
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+    0: Update Delay <Number>			Default: 3
+
+Example:
+	Enable Team BFT for the local player with default parameters
+	[] call VMF_fnc_teamMarkers;
+
+	Enable Team BFT for all players with custom parameters
+	[5] remoteExec ["VMF_fnc_teamMarkers",[0,-2] select isDedicated,true];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
 if (playerSide == sideLogic) exitWith {};
 
+if !(canSuspend) exitWith {_this spawn VMF_fnc_teamMarkers};
+
+//Prevents it being run multiple times
+if (missionNamespace getVariable ["VMF_teamBFT_active",false]) exitWith {};
+missionNamespace setVariable ["VMF_teamBFT_active",true];
+
 params [
-	"_updateTimer"
+	["_updateDelay",3,[-1]]
 ];
 
 //Prevents possibility of multiple updateLoops running simultaneously
@@ -22,13 +47,12 @@ if !(missionNamespace getVariable ["VMF_teamBFT_activeLoop",false]) then {
 		private _group = group player;
 
 		private _groupEventId = _group getVariable ["VMF_teamBFT_groupEventID",-1];
-
-		if (_groupEventId == -1) then {
+		if (_groupEventId isEqualTo -1) then {
 			private _unitLeftEH = _group addEventHandler ["UnitLeft",{
 				params ["_group","_oldUnit"];
 
 				if (missionNamespace getVariable ["VMF_teamBFT_active",true]) then {
-					if (player == _oldUnit) then {
+					if (player isEqualTo _oldUnit) then {
 						{
 							private _unit = _x;
 							private _marker = _unit getVariable ["VMF_teamBFTMarker",""];
@@ -53,15 +77,13 @@ if !(missionNamespace getVariable ["VMF_teamBFT_activeLoop",false]) then {
 			}];
 		};
 
-
-
 		{
 			private _unit = _x;
 			private _marker = _unit getVariable ["VMF_teamBFTMarker",""];
 
 			if (_marker == "") then {
 				_marker = createMarkerLocal [str(_unit),position _unit];
-				
+
 				_marker setMarkerShapeLocal "ICON";
 				_marker setMarkerTypeLocal "mil_triangle";
 				_marker setMarkerSizeLocal [0.5,0.75];
@@ -69,11 +91,11 @@ if !(missionNamespace getVariable ["VMF_teamBFT_activeLoop",false]) then {
 				_unit setVariable ["VMF_teamBFTMarker",_marker];
 			};
 
-			_marker setMarkerColorLocal ([_unit] call VMF_fnc_markerColour);
+			_marker setMarkerColorLocal ([_unit] call VMF_fnc_teamMarkerColour);
 			_marker setMarkerPosLocal position _unit;
 			_marker setMarkerDirLocal getDir _unit;
 		} forEach (units _group);
 
-		sleep _updateTimer;
+		sleep _updateDelay;
 	};
 };

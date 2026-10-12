@@ -1,18 +1,41 @@
-//
-// Function: VMF_fnc_groupMarkers_loop
-// Author: Scofer
-// Description: Creates markers for groups containing players, and updates their position every _updateTimer seconds
-// Intended Locality: Global
-//
-missionNamespace setVariable ["VMF_groupBFT_active",true];
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_groupMarkers
 
+Description:
+    Initialises the markers for groups containing players
+
+Execution:
+	- Local: Yes
+	- Server: No
+	- Global: Yes
+
+Parameters:
+    0: Update Delay <Number>			Default: 3
+	1: Max Unit Distance <Number>		Default: 100
+	2: Friendly Side Markers <Bool>		Default: false
+
+Example:
+	Enable Group BFT for the local player with default parameters
+	[] call VMF_fnc_groupMarkers;
+
+	Enable Group BFT for all players with custom parameters
+	[5,50,false] remoteExec ["VMF_fnc_groupMarkers",[0,-2] select isDedicated,true];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
-params [
-	["_updateTimer",3,[-1]],
-	["_maxDistance",100,[-1]],
-	["_friendSideMarkers",false,[false]]
-];
+if (playerSide == sideLogic) exitWith {};
+
+if !(canSuspend) exitWith {_this spawn VMF_fnc_groupMarkers};
+
+//Prevents it being run multiple times
+if (missionNamespace getVariable ["VMF_groupBFT_active",false]) exitWith {};
+missionNamespace setVariable ["VMF_groupBFT_active",true];
 
 addMissionEventHandler ["GroupDeleted",{
 	if (missionNamespace setVariable ["VMF_groupBFT_active",true]) then {
@@ -20,14 +43,20 @@ addMissionEventHandler ["GroupDeleted",{
 
 		private _marker = _group getVariable ["VMF_bftGroupMarker",""];
 
-		if (_marker != "") then {
-			deleteMarkerLocal _marker;
+		if (_marker isNotEqualTo "") then {
+			deleteMarker _marker;
+			_group setVariable ["VMF_bftGroupMarker",""];
 		};
-		_group setVariable ["VMF_bftGroupMarker",""];
 	} else {
 		removeMissionEventHandler ["GroupDeleted",_thisEventHandler];
-	};
+	};	
 }];
+
+params [
+	["_updateTimer",3,[-1]],
+	["_maxDistance",100,[-1]],
+	["_friendSideMarkers",false,[false]]
+];
 
 
 if !(missionNamespace getVariable ["VMF_groupBFT_activeLoop",false]) then {
@@ -40,13 +69,13 @@ if !(missionNamespace getVariable ["VMF_groupBFT_activeLoop",false]) then {
 			//if (_addFriendSideMarkers && (side player getFriend side _group < 0.6)) exitWith {};
 
 			//(side player getFriend blufor > 0.6 || (_addFriendMarkers && blufor getFriend blufor > 0.6))
-			if (side player == side _group || (_friendSideMarkers && side player getFriend side _group > 0.6)) then {
+			if (side player isEqualTo side _group || {_friendSideMarkers && {side player getFriend side _group > 0.6}}) then {
 				private _units = units _group;
 
-				if (_units findIf {_x in ([switchableUnits,playableUnits] select isMultiplayer)} != -1) then {
+				if (_units findIf {_x in ([switchableUnits,playableUnits] select isMultiplayer)} isNotEqualTo -1) then {
 					private _marker = _group getVariable ["VMF_bftGroupMarker",""];
 
-					if (_marker == "") then {
+					if (_marker isEqualTo "") then {
 						_marker = createMarkerLocal [str(_group) + "_" + str(time),position (leader _group)];
 						_marker setMarkerShapeLocal "ICON";
 						_marker setMarkerTypeLocal "b_inf";
@@ -59,7 +88,7 @@ if !(missionNamespace getVariable ["VMF_groupBFT_activeLoop",false]) then {
 							params ["_group","_newGroupId"];
 							if (missionNamespace getVariable ["VMF_groupBFT_active",true]) then {
 								private _marker = _group getVariable ["VMF_bftGroupMarker",""];
-								if (_marker != "") then {
+								if (_marker isNotEqualTo "") then {
 									_marker setMarkerTextLocal _newGroupId;
 								};
 							} else {
@@ -72,8 +101,8 @@ if !(missionNamespace getVariable ["VMF_groupBFT_activeLoop",false]) then {
 							if (missionNamespace getVariable ["VMF_groupBFT_active",true]) then {
 								private _marker = _group getVariable ["VMF_bftGroupMarker",""];
 
-								if (_marker != "") then {
-									deleteMarker _marker;
+								if (_marker isNotEqualTo "") then {
+									deleteMarkerLocal _marker;
 								};
 
 								_group setVariable ["VMF_bftGlobalMarker",""];

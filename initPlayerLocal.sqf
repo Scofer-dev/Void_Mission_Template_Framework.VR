@@ -6,6 +6,14 @@ player addEventHandler ["Respawn", {
 
 call VMF_fnc_medicalNotification;
 
+[3] spawn VMF_fnc_teamMarkers;
+
+[
+    3,    //Update Delay in seconds
+    100,  //Max distance between group leader and a unit for its position to be counted for the position centroid
+    true //Add group markers for friendly sides
+] spawn VMF_fnc_groupMarkers;
+
 [
 	"Void Mission Framework",
 	"Mission Start",

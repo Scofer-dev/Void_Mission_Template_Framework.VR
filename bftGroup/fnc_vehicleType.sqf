@@ -1,14 +1,34 @@
-//
-// Function: VMF_fnc_vehicleType
-// Author: Scofer
-// Description: Checks what kind of vehicle the passed vehicle argument is and returns the corresponding marker type
-// Intended Locality: Server
-//
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_vehicleType
+
+Description:
+    Checks what kind of vehicle the passed vehicle parameter is and returns the corresponding marker type
+	Typically called by VMF_fnc_groupMarkersUpdateLoop
+
+Execution:
+	- Local: No
+	- Server: Yes
+	- Global: No
+
+Parameters:
+    0: Vehicle <Object>
+
+Example:
+	[tank_1] call VMF_fnc_vehicleType;
+
+Returns:
+    0: Marker Type <String>
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
 params [
-	"_vehicle"
+	["_vehicle",objNull,[objNull]]
 ];
+
+if (isNull _vehicle) exitWith {"b_inf"};
 
 private _return = "b_inf";
 private _vehicleKinds = [(configFile >> "CfgVehicles" >> typeOf _vehicle),true] call BIS_fnc_returnParents;

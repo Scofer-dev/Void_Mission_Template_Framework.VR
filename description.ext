@@ -115,19 +115,19 @@ class CfgFunctions {
             };
         };
         class bftTeam {
-            class teamMarkers_loop {
-                file = "bftTeam\fnc_teamMarkers_loop.sqf";
+            class teamMarkers {
+                file = "bftTeam\fnc_teamMarkers.sqf";
             };
-            class markerColour {
-                file = "bftTeam\fnc_markerColour.sqf";
+            class teamMarkerColour {
+                file = "bftTeam\fnc_teamMarkerColour.sqf";
             };
             class disableTeamMarkers {
                 file = "bftTeam\fnc_disableTeamMarkers.sqf";
             };
         };
         class bftGroup {
-            class groupMarkers_loop {
-                file = "bftGroup\fnc_groupMarkers_loop.sqf";
+            class groupMarkers {
+                file = "bftGroup\fnc_groupMarkers.sqf";
             };
             class disableGroupMarkers {
                 file = "bftGroup\fnc_disableGroupMarkers.sqf";
