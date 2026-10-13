@@ -13,9 +13,9 @@ Parameters:
     N/A
 
 Example:
-	call VMF_fnc_displayNotification;
+	call VMF_fnc_medicalNotification;
 
-	[] remoteExec ["VMF_fnc_displayNotification",[0,-2] select isDedicated];
+	[] remoteExec ["VMF_fnc_medicalNotification",[0,-2] select isDedicated];
 Returns:
     Nothing
 
