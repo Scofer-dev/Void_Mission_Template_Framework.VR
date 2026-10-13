@@ -31,10 +31,8 @@ params [
     ["_duration",5,[0]]
 ];
 
-private _zeusOpen = !isNull (findDisplay 312);
-
 if (playerSide == sideLogic || !isMultiplayer ) then {
-    if (_zeusOpen) then {
+    if !(isNull (findDisplay 312)) then {
         [_title, _text, _duration] call BIS_fnc_curatorHint;
     } else {
         hintSilent _text;
