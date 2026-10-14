@@ -182,6 +182,16 @@ class CfgFunctions {
                 file = "custom\fnc_attachFranta.sqf";
             };
         };
+		class invSwap {
+    		class invSwapConfig {file = "invSwap\fnc_invSwapConfig.sqf"; preInit = 1;};
+    		class invSwapRole {file = "invSwap\fnc_invSwapRole.sqf";};
+    		class invSwapLoadout {file = "invSwap\fnc_invSwapLoadout.sqf";};
+    		class invSwap {file = "invSwap\fnc_invSwap.sqf";};
+    		class invSwapLocal {file = "invSwap\fnc_invSwapLocal.sqf";};
+    		class invSwapInit {file = "invSwap\fnc_invSwapInit.sqf";};
+    		class invSwapDialog {file = "invSwap\fnc_invSwapDialog.sqf";};
+    		class invSwapCapture {file = "invSwap\fnc_invSwapCapture.sqf";};
+		};
         class vehicleSpawner {
             class defineVehicles {
 				file = "vehicleSpawner\fnc_defineVehicles.sqf";
