@@ -10,31 +10,16 @@ Execution:
 	- Global: No
 
 Parameters:
-    0: Aircraft Classname (String)
-	1: Drop Position (Array) - Z-pos is the drop height. Planes complete waypoints from further away, position may need to be about ~200 further on
-	2: Direction (Number)
-	3: Side (Side)							Default: west
-	4: Players (Array)
-	5: Parachute Backpack Class (String)	Default: "B_Parachute_02_F"
+	0: Parachute Backpack Class (String)	Default: "B_Parachute"
 
 Example:
-	[ 
-		"LIB_C47_Skytrain",
-		[1500,3050,300], 
-		90, 
-		civilian, 
-		[playerOne,playerTwo,playerThree],
+	[
 		"B_Parachute"
-	] call VMF_fnc_playerParadrop;
+	] call VMF_fnc_playerParadropLocal;
 
 	[ 
-		"LIB_C47_Skytrain",
-		[1500,3050,300], 
-		90, 
-		civilian, 
-		[playerOne,playerTwo,playerThree],
 		"B_Parachute"
-	] remoteExec ["VMF_fnc_playerParadrop",2];
+	] remoteExec ["VMF_fnc_playerParadropLocal",_paradroppingUnit];
 
 Returns:
     Nothing
@@ -47,6 +32,10 @@ if !(hasInterface) exitWith {};
 params [
 	["_parachute","B_Parachute",[""]]
 ];
+
+if (_parachute isEqualTo "") then {
+	_parachute = "B_Parachute";
+}:
 
 player allowDamage false;
 
