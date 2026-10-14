@@ -1,3 +1,47 @@
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_playerParadrop
+
+Description:
+    Initiates an automatic player paradrop
+
+Execution:
+	- Client: No
+	- Server: Yes
+	- Global: No
+
+Parameters:
+    0: Aircraft Classname (String)
+	1: Drop Position (Array) - Z-pos is the drop height. Planes complete waypoints from further away, position may need to be about ~200 further on
+	2: Direction (Number)
+	3: Side (Side)							Default: west
+	4: Players (Array)
+	5: Parachute Backpack Class (String)	Default: "B_Parachute_02_F"
+
+Example:
+	[ 
+		"LIB_C47_Skytrain",
+		[1500,3050,300], 
+		90, 
+		civilian, 
+		[playerOne,playerTwo,playerThree],
+		"B_Parachute"
+	] call VMF_fnc_playerParadrop;
+
+	[ 
+		"LIB_C47_Skytrain",
+		[1500,3050,300], 
+		90, 
+		civilian, 
+		[playerOne,playerTwo,playerThree],
+		"B_Parachute"
+	] remoteExec ["VMF_fnc_playerParadrop",2];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
 params [
@@ -9,9 +53,9 @@ params [
 	["_parachute","B_Parachute",[""]]
 ];
 
-if (_aircraftClass == "") exitWith {};
+if (_aircraftClass isEqualTo "") exitWith {};
 if (_dropPos isEqualTo [0,0,0]) exitWith {};
-if (_direction == -1) exitWith {};
+if (_direction isEqualTo -1) exitWith {};
 if (_players isEqualTo []) exitWith {};
 
 private _dropHeight = _dropPos select 2;
@@ -95,7 +139,7 @@ _group setCombatMode "WHITE";
 							{
 								private _unit = _x;
 
-								[_unit,_parachute] remoteExec ["VMF_fnc_playerParadropLocal",_unit];
+								[_parachute] remoteExec ["VMF_fnc_playerParadropLocal",_unit];
 								//unassignVehicle _unit;	//If not done the plane will try to reach [0,0,0] for some reason
 								[_unit] remoteExec ["unassignVehicle",0];
 

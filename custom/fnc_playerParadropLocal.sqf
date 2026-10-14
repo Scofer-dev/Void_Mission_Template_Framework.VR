@@ -1,36 +1,80 @@
+/* ----------------------------------------------------------------------------
+Function: VMF_fnc_playerParadropLocal
+
+Description:
+	Automatically makes the player paradrop from their current vehicle with a parachute
+
+Execution:
+	- Client: Yes
+	- Server: No
+	- Global: No
+
+Parameters:
+    0: Aircraft Classname (String)
+	1: Drop Position (Array) - Z-pos is the drop height. Planes complete waypoints from further away, position may need to be about ~200 further on
+	2: Direction (Number)
+	3: Side (Side)							Default: west
+	4: Players (Array)
+	5: Parachute Backpack Class (String)	Default: "B_Parachute_02_F"
+
+Example:
+	[ 
+		"LIB_C47_Skytrain",
+		[1500,3050,300], 
+		90, 
+		civilian, 
+		[playerOne,playerTwo,playerThree],
+		"B_Parachute"
+	] call VMF_fnc_playerParadrop;
+
+	[ 
+		"LIB_C47_Skytrain",
+		[1500,3050,300], 
+		90, 
+		civilian, 
+		[playerOne,playerTwo,playerThree],
+		"B_Parachute"
+	] remoteExec ["VMF_fnc_playerParadrop",2];
+
+Returns:
+    Nothing
+
+Author:
+    Scofer
+---------------------------------------------------------------------------- */
+if !(hasInterface) exitWith {};
+
 params [
-	["_unit",objNull,[objNull]],
 	["_parachute","B_Parachute",[""]]
 ];
-if (isNull _unit) exitWith {};
 
-_unit allowDamage false;
+player allowDamage false;
 
-_unit setVariable ["VMF_backpackData",[backpack _unit,backpackItems _unit]];
+player setVariable ["VMF_backpackData",[backpack player,backpackItems player]];
 
-removeBackpack _unit;
-_unit addBackpack _parachute;
+removeBackpack player;
+player addBackpack _parachute;
 
 //unassignVehicle _unit;
-[_unit] remoteExec ["unassignVehicle",0];
-moveOut _unit;
+[player] remoteExec ["unassignVehicle",0];
+moveOut player;
 
 sleep 2;
 
-_unit action ["OpenParachute"];
+player action ["OpenParachute"];
 
-waitUntil {sleep 3; isNull objectParent _unit && isTouchingGround _unit};
+waitUntil {sleep 3; isNull objectParent player && isTouchingGround player};
 
-removeBackpack _unit;
+removeBackpack player;
 
-_unit getVariable ["VMF_backpackData",["",[]]] params [
+player getVariable ["VMF_backpackData",["",[]]] params [
 	["_backpack","",[""]],
 	["_backpackItems",[],[[]]]
 ];
 
-_unit addBackpack _backpack;
+player addBackpack _backpack;
 {
-	(unitBackpack _unit) addItemCargoGlobal [_x,1];
+	(unitBackpack player) addItemCargoGlobal [_x,1];
 } forEach _backpackItems;
 
-_unit allowDamage true;
+player allowDamage true;
