@@ -5,6 +5,7 @@ player addEventHandler ["Respawn", {
 }];
 
 call VMF_fnc_medicalNotification;
+call VMF_fnc_invSwapInit;
 
 [3] spawn VMF_fnc_teamMarkers;
 
