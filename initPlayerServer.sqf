@@ -4,7 +4,7 @@ params [
 ];
 
 if (missionNamespace getVariable ["VMF_safeStartEnabled",true]) then {
-	[_playerUnit] remoteExec ["VMF_fnc_safeStartInit",_playerUnit];
+	[] remoteExec ["VMF_fnc_safeStartInit",_playerUnit];
 };
 
 {

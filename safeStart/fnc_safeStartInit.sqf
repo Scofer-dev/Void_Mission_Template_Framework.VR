@@ -23,13 +23,9 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
-params [
-	["_playerUnit",objNull,[objNull]]
-];
+waitUntil {!isNull player};
 
-if (isNull _playerUnit) exitWith {};
-
-_playerUnit allowDamage false;
+player allowDamage false;
 
 //Find out the current status of ACE Advanced Throwing so it can be restored to that state when Safe Start ends
 private _aceThrowing = ace_advanced_throwing_enabled;
@@ -37,11 +33,11 @@ private _aceThrowing = ace_advanced_throwing_enabled;
 ace_advanced_throwing_enabled = false;
 
 //Make player immune to WBK melee damage
-_playerUnit setVariable ['IMS_IsUnitInvicibleScripted',1,true];
+player setVariable ['IMS_IsUnitInvicibleScripted',1,true];
 
 //Prevents firing of weapons. Removed weapon dry sfx as it was annoying. In future may try making the sound only play for the player that clicked, rather than using a 3D sound
 private _fireAction = [
-	_playerUnit,
+	player,
 	"DefaultAction",
 	"true",
 	{
@@ -50,7 +46,7 @@ private _fireAction = [
 ] call ace_common_fnc_addActionEventHandler;
 
 //Extra check that deletes projectiles if weapon is fired
-private _firedEH = _playerUnit addEventHandler ["Fired", {
+private _firedEH = player addEventHandler ["Fired", {
 	params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
 
 	deleteVehicle _projectile;
@@ -61,7 +57,7 @@ private _firedEH = _playerUnit addEventHandler ["Fired", {
 	};
 }];
 
-_playerUnit setVariable ["VMF_safeStart_params",[_aceThrowing,_fireAction,_firedEH]];
+player setVariable ["VMF_safeStart_params",[_aceThrowing,_fireAction,_firedEH]];
 
 //Displays the Safe Start Active box
 [
@@ -69,30 +65,27 @@ _playerUnit setVariable ["VMF_safeStart_params",[_aceThrowing,_fireAction,_fired
 		if (missionNamespace getVariable ["VMF_safeStartEnabled",false]) then {
 			"VMF_safeStart_layer" cutRsc ["VMF_safeStart_enabled","PLAIN",0];
 		} else { //Once Safe Start is disabled enable everything
-			_this params [
-				"_playerUnit",
-				"_handle"
-			];
-
+			private _handle = _this select 1;
+			
 			//private _handle = _this select 1;
-			_playerUnit getVariable "VMF_safeStart_params" params [
+			player getVariable "VMF_safeStart_params" params [
 				"_aceThrowing",
 				"_fireAction",
 				"_firedEH"
 			];
 
 			if (playerSide != sideLogic) then {
-				_playerUnit allowDamage true;
+				player allowDamage true;
 			};
 
 			ace_advanced_throwing_enabled = _aceThrowing;
 
 			//Remove player WBK melee immunity
-			_playerUnit setVariable ['IMS_IsUnitInvicibleScripted',nil,true];
+			player setVariable ['IMS_IsUnitInvicibleScripted',nil,true];
 
-			[_playerUnit,"DefaultAction",_fireAction] call ace_common_fnc_removeActionEventHandler;
+			[player,"DefaultAction",_fireAction] call ace_common_fnc_removeActionEventHandler;
 
-			_playerUnit removeEventHandler ["Fired",_firedEH];
+			player removeEventHandler ["Fired",_firedEH];
 
 			[_handle] call CBA_fnc_removePerFrameHandler;
 			
@@ -100,6 +93,5 @@ _playerUnit setVariable ["VMF_safeStart_params",[_aceThrowing,_fireAction,_fired
 			"VMF_safeStart_layer" cutRsc ["VMF_safeStart_disabled","PLAIN"];
 		};
 	},
-	0.5,
-	_playerUnit
+	0.5
 ] call CBA_fnc_addPerFrameHandler;
