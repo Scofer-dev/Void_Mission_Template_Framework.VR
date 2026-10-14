@@ -15,7 +15,7 @@ Parameters:
 	2: Drop Position (Array) - Z-pos is the drop height. Planes complete waypoints from further away, position may need to be about ~200 further on
 	3: Direction (Number)
 	4: Side (Side)							Default: west
-	5: Parachute Backpack Class (String)	Default: "B_Parachute_02_F"
+	5: Parachute Class (String)	Default: "B_Parachute_02_F"
 	6: Parachute Attach Offset (Array)		Default: [0,0,2]
 
 Example:
