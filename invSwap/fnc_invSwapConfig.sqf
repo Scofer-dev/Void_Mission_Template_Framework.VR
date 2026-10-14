@@ -21,8 +21,7 @@ missionNamespace setVariable ["VMF_invSwapKits",[
     ["medic", "kit_medic", "Medic"],
     ["autorifleman", "kit_autorifleman", "Autorifleman"],
     ["assistant", "kit_assistant", "Assistant Autorifleman"],
-    ["antitank", "kit_antitank", "AT Rifleman"],
-    ["radioman", "kit_radioman", "Radio Operator"]
+    ["antitank", "kit_antitank", "AT Rifleman"]
 ]];
 
 missionNamespace setVariable ["VMF_invSwapRoles",[
@@ -32,8 +31,7 @@ missionNamespace setVariable ["VMF_invSwapRoles",[
     ["medic", "medic"],
     ["autorifleman", "autorifleman"], ["ar", "autorifleman"],
     ["assistant autorifleman", "assistant"], ["aar", "assistant"],
-    ["at rifleman", "antitank"],
-    ["radio operator", "radioman"], ["radioman", "radioman"]
+    ["at rifleman", "antitank"]
 ]];
 
 missionNamespace setVariable ["VMF_invSwapDefaultRole","rifleman"];
