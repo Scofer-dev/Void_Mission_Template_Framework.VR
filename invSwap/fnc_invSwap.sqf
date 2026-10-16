@@ -24,34 +24,53 @@ Examples:
 
 Returns:
     Dispatch accepted <Boolean>; true is not an owner-client completion acknowledgement.
-	
+
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
-if (isRemoteExecuted && {remoteExecutedOwner != 2} && {
-    allCurators findIf {
+
+if (isRemoteExecuted && {remoteExecutedOwner isNotEqualTo 2 && {
+    (allCurators findIf {
         private _zeus = getAssignedCuratorUnit _x;
-        !isNull _zeus && {owner _zeus == remoteExecutedOwner}
-    } < 0
-}) exitWith {false};
-params [["_target", objNull, [objNull, ""]], ["_role", "", [""]]];
+
+        !isNull _zeus && {owner _zeus isEqualTo remoteExecutedOwner}
+    }) < 0
+}}) exitWith {false};
+
+params [
+    ["_target", objNull, [objNull, ""]],
+    ["_role", "", [""]]
+];
+
 private _unit = _target;
+
+//Get UID from its assigned player.
 if (_target isEqualType "") then {
     _unit = objNull;
+
     {
-        if (getPlayerUID _x == _target && {alive _x}) exitWith {_unit = _x};
+        if (getPlayerUID _x isEqualTo _target && {alive _x}) exitWith {
+            _unit = _x;
+        };
     } forEach allPlayers;
 };
-if (isNull _unit || {!isPlayer _unit} || {!alive _unit} || {!(_unit isKindOf "CAManBase")}) exitWith {
+
+if !(!isNull _unit && {isPlayer _unit && {alive _unit && {_unit isKindOf "CAManBase"}}}) exitWith {
     diag_log "[VMF invSwap] Target must be a connected, living player.";
     false
 };
+
 private _resolved = [_unit, _role] call VMF_fnc_invSwapLoadout;
 _resolved params ["_loadout", "_resolvedRole"];
+
 if (_loadout isEqualTo []) exitWith {
     if (isRemoteExecuted) then {
         [format ["No configured loadout for role '%1'. Check invSwap configuration and template units.", _resolvedRole]] remoteExecCall ["hint", remoteExecutedOwner];
     };
+
     false
 };
+
+//Inventory changes must run locally for the player.
 [_unit, _loadout, _resolvedRole] remoteExecCall ["VMF_fnc_invSwapLocal", _unit];
+
 true

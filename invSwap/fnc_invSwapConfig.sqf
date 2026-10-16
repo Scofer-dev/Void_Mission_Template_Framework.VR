@@ -14,7 +14,7 @@ Configuration:
     Roles: [lowercase player slot description, role key]. @group suffixes are ignored.
     Keep default role mapped to a configured kit. Edit examples for your mission.
 ---------------------------------------------------------------------------- */
-missionNamespace setVariable ["VMF_invSwapKits",[
+missionNamespace setVariable ["VMF_invSwapKits", [
     ["rifleman", "kit_rifleman", "Rifleman"],
     ["team_leader", "kit_team_leader", "Team Leader"],
     ["squad_leader", "kit_squad_leader", "Squad Leader"],
@@ -24,7 +24,7 @@ missionNamespace setVariable ["VMF_invSwapKits",[
     ["antitank", "kit_antitank", "AT Rifleman"]
 ]];
 
-missionNamespace setVariable ["VMF_invSwapRoles",[
+missionNamespace setVariable ["VMF_invSwapRoles", [
     ["rifleman", "rifleman"],
     ["team leader", "team_leader"], ["ftl", "team_leader"],
     ["squad leader", "squad_leader"], ["sl", "squad_leader"],
@@ -34,4 +34,4 @@ missionNamespace setVariable ["VMF_invSwapRoles",[
     ["at rifleman", "antitank"]
 ]];
 
-missionNamespace setVariable ["VMF_invSwapDefaultRole","rifleman"];
+missionNamespace setVariable ["VMF_invSwapDefaultRole", "rifleman"];

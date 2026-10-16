@@ -14,7 +14,7 @@ Parameters:
 
 Configuration:
     Reads VMF_invSwapKits and VMF_invSwapCache. Named templates must exist for live fallback.
-    Missing or malformed inventories return an empty loadout and write an RPT message.
+    Missing or malformed inventories return an empty loadout and report BIS_fnc_error.
 
 Examples:
     private _resolved = [playerUnit] call VMF_fnc_invSwapLoadout;
@@ -24,26 +24,42 @@ Returns:
     [loadout array, role key] <Array>; loadout is [] on failure.
 
 ---------------------------------------------------------------------------- */
-params [["_unit", objNull, [objNull]], ["_role", "", [""]]];
-if (_role == "") then {_role = [_unit] call VMF_fnc_invSwapRole};
+params [
+    ["_unit", objNull, [objNull]],
+    ["_role", "", [""]]
+];
+
+if (_role isEqualTo "") then {
+    _role = [_unit] call VMF_fnc_invSwapRole;
+};
+
+//Captured inventories remain avaliable after their template units get deleted
 private _cache = missionNamespace getVariable ["VMF_invSwapCache", createHashMap];
 private _loadout = +(_cache getOrDefault [_role, []]);
-if (count _loadout == 10) exitWith {[_loadout, _role]};
+
+if (count _loadout isEqualTo 10) exitWith {[_loadout, _role]};
+
 private _kits = missionNamespace getVariable ["VMF_invSwapKits", []];
-private _index = _kits findIf {(_x select 0) == _role};
+private _index = _kits findIf {(_x select 0) isEqualTo _role};
+
 if (_index >= 0) then {
     private _source = (_kits select _index) select 1;
+
     if (_source isEqualType []) then {
         _loadout = +_source;
     } else {
         private _template = missionNamespace getVariable [_source, objNull];
+
         if (!isNull _template && {_template isKindOf "CAManBase"}) then {
             _loadout = getUnitLoadout _template;
         };
     };
 };
-if (count _loadout != 10) then {
+
+if (count _loadout isNotEqualTo 10) then {
     _loadout = [];
-    diag_log format ["[VMF invSwap] Missing/invalid kit for %1 (%2); retaining equipment.", name _unit, _role];
+
+    ["[VMF invSwap] Missing/invalid kit for %1 (%2); retaining equipment. Check fnc_invSwapConfig.sqf and template units.", name _unit, _role] call BIS_fnc_error;
 };
+
 [_loadout, _role]
