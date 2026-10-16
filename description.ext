@@ -183,14 +183,30 @@ class CfgFunctions {
             };
         };
 		class invSwap {
-    		class invSwapConfig {file = "invSwap\fnc_invSwapConfig.sqf"; preInit = 1;};
-    		class invSwapRole {file = "invSwap\fnc_invSwapRole.sqf";};
-    		class invSwapLoadout {file = "invSwap\fnc_invSwapLoadout.sqf";};
-    		class invSwap {file = "invSwap\fnc_invSwap.sqf";};
-    		class invSwapLocal {file = "invSwap\fnc_invSwapLocal.sqf";};
-    		class invSwapInit {file = "invSwap\fnc_invSwapInit.sqf";};
-    		class invSwapDialog {file = "invSwap\fnc_invSwapDialog.sqf";};
-    		class invSwapCapture {file = "invSwap\fnc_invSwapCapture.sqf";};
+    		class invSwapConfig {
+                file = "invSwap\fnc_invSwapConfig.sqf"; preInit = 1;
+            };
+    		class invSwapRole {
+                file = "invSwap\fnc_invSwapRole.sqf";
+            };
+    		class invSwapLoadout {
+                file = "invSwap\fnc_invSwapLoadout.sqf";
+            };
+    		class invSwap {
+                file = "invSwap\fnc_invSwap.sqf";
+            };
+    		class invSwapLocal {
+                file = "invSwap\fnc_invSwapLocal.sqf";
+            };
+    		class invSwapInit {
+                file = "invSwap\fnc_invSwapInit.sqf";
+            };
+    		class invSwapDialog {
+                file = "invSwap\fnc_invSwapDialog.sqf";
+            };
+    		class invSwapCapture {
+                file = "invSwap\fnc_invSwapCapture.sqf";
+            };
 		};
         class vehicleSpawner {
             class defineVehicles {
@@ -210,6 +226,37 @@ class CfgFunctions {
             };
             class deInitSpawner {
                 file = "vehicleSpawner\fnc_deInitSpawner.sqf";
+            };
+        };
+    };
+    class RGS {
+        class define {
+            class defineGroup {
+                file = "randomGroupSpawner\fnc_defineGroup.sqf";
+            };
+            class defineVehicle {
+                file = "randomGroupSpawner\fnc_defineVehicle.sqf";
+            };
+        };
+        class spawnGroup {
+            class spawnGroupDialog {
+                file = "randomGroupSpawner\fnc_spawnGroupDialog.sqf";
+            };
+            class spawnGroup {
+                file = "randomGroupSpawner\fnc_spawnGroup.sqf";
+            };
+        };
+        class spawnVehicle {
+            class spawnVehicleDialog {
+                file = "randomGroupSpawner\fnc_spawnVehicleDialog.sqf";
+            };
+            class spawnVehicle {
+                file = "randomGroupSpawner\fnc_spawnVehicle.sqf";
+            };
+        };
+        class randomiser {
+            class loadoutRandomiser {
+                file = "randomGroupSpawner\fnc_loadoutRandomiser.sqf";
             };
         };
     };

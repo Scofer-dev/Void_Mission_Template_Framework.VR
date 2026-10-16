@@ -31,6 +31,24 @@ call VMF_fnc_invSwapInit;
 	}
 ] call zen_custom_modules_fnc_register;
 
+[
+	"Random Group Spawner",
+	"Spawn Group",
+	{
+		[_this select 0] call RGS_fnc_spawnGroupDialog;
+	},
+	"\a3\3den\data\displays\display3den\panelright\modeobjects_ca.paa"
+] call zen_custom_modules_fnc_register;
+
+[
+	"Random Group Spawner",
+	"Spawn Vehicle",
+	{
+		[_this select 0] call RGS_fnc_spawnVehicleDialog;
+	},
+	"\a3\soft_f\mrap_01\data\ui\mrap_01_base_ca.paa"
+] call zen_custom_modules_fnc_register;
+
 _arsenalArray = call compile preprocessFileLineNumbers "arsenalArrays.sqf";
 [_arsenalArray] spawn VMF_fnc_addArsenal;
 

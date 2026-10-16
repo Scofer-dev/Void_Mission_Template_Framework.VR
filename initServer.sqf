@@ -1,5 +1,7 @@
 [missionNamespace getVariable ["invSwapLogic", objNull]] call VMF_fnc_invSwapCapture;
 
+execVM "defineRGS.sqf";
+
 [
 	"Respawn Wave",	//Event Name
 	"Respawns players",	//Event Description
