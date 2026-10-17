@@ -14,40 +14,6 @@ call VMF_fnc_medicalNotification;
     true //Add group markers for friendly sides
 ] spawn VMF_fnc_groupMarkers;
 
-[
-	"Void Mission Framework",
-	"Mission Start",
-	{
-		call VMF_fnc_missionStartDialog;
-	}
-] call zen_custom_modules_fnc_register;
-
-[
-	"Void Mission Framework",
-	"Call Custom Event",
-	{
-		call VMF_fnc_callEventDialog;
-	}
-] call zen_custom_modules_fnc_register;
-
-[
-	"Random Group Spawner",
-	"Spawn Group",
-	{
-		[_this select 0] call RGS_fnc_spawnGroupDialog;
-	},
-	"\a3\3den\data\displays\display3den\panelright\modeobjects_ca.paa"
-] call zen_custom_modules_fnc_register;
-
-[
-	"Random Group Spawner",
-	"Spawn Vehicle",
-	{
-		[_this select 0] call RGS_fnc_spawnVehicleDialog;
-	},
-	"\a3\soft_f\mrap_01\data\ui\mrap_01_base_ca.paa"
-] call zen_custom_modules_fnc_register;
-
 _arsenalArray = call compile preprocessFileLineNumbers "arsenalArrays.sqf";
 [_arsenalArray] spawn VMF_fnc_addArsenal;
 

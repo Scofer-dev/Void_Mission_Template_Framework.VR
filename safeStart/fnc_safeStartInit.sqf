@@ -25,6 +25,14 @@ if !(hasInterface) exitWith {};
 
 waitUntil {!isNull player};
 
+[
+	"Void Mission Framework",
+	"Mission Start",
+	{
+		call VMF_fnc_missionStartDialog;
+	}
+] call zen_custom_modules_fnc_register;
+
 player allowDamage false;
 
 //Find out the current status of ACE Advanced Throwing so it can be restored to that state when Safe Start ends

@@ -31,6 +31,18 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
+if !(missionNamespace getVariable ["VMF_eventModuleRegistered",false]) then {
+	[
+		"Void Mission Framework",
+		"Call Custom Event",
+		{
+			call VMF_fnc_callEventDialog;
+		}
+	] remoteExec ["zen_custom_modules_fnc_register",[0,-2] select isDedicated];
+
+	missionNamespace setVariable ["VMF_eventModuleRegistered",true];
+};
+
 params [
 	["_eventName","",[""]],
 	["_eventTooltip","",[""]],
