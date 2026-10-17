@@ -5,7 +5,7 @@
 		[_this select 0] call RGS_fnc_spawnGroupDialog;
 	},
 	"\a3\3den\data\displays\display3den\panelright\modeobjects_ca.paa"
-] remoteExec ["zen_custom_modules_fnc_register",[0,-2] select isDedicated];
+] remoteExec ["zen_custom_modules_fnc_register",[0,-2] select isDedicated,true];
 
 [
 	"Random Group Spawner",
@@ -14,7 +14,7 @@
 		[_this select 0] call RGS_fnc_spawnVehicleDialog;
 	},
 	"\a3\soft_f\mrap_01\data\ui\mrap_01_base_ca.paa"
-] remoteExec ["zen_custom_modules_fnc_register",[0,-2] select isDedicated];
+] remoteExec ["zen_custom_modules_fnc_register",[0,-2] select isDedicated,true];
 
 VMF_skillNameArray = ["aimingAccuracy","aimingShake","aimingSpeed","endurance","spotDistance","spotTime","courage","reloadSpeed","commanding","general"];
 publicVariable "VMF_skillNameArray";
