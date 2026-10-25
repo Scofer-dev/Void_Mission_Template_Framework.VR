@@ -12,7 +12,7 @@ switch (_messageType) do {
 			[] spawn {	//Player respawn
 				setPlayerRespawnTime 0;
 
-				sleep 5;
+				uiSleep 5;
 
 				setPlayerRespawnTime 999999;
 			};
@@ -23,7 +23,7 @@ switch (_messageType) do {
 			//Code to execute on each client
 			[] spawn {
 				hint "Mission live in 5 seconds..."; 
-				sleep 5;
+				uiSleep 5;
 				hint "Mission is live!";
 
 			};
@@ -32,7 +32,7 @@ switch (_messageType) do {
 		if (isServer) then {
 			//Code to execute on the server
 			[] spawn {	//Disables Safe Start
-				sleep 5;
+				uiSleep 5;
 				["Mission is Live"] call VMF_fnc_missionStart;
 			};
 		};
