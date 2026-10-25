@@ -22,13 +22,17 @@ switch (_messageType) do {
 		if (hasInterface) then {
 			//Code to execute on each client
 			[] spawn {
-				
+				hint "Mission live in 5 seconds..."; 
+				sleep 5;
+				hint "Mission is live!";
+
 			};
 		};
 		
 		if (isServer) then {
 			//Code to execute on the server
 			[] spawn {	//Disables Safe Start
+				sleep 5;
 				["Mission is Live"] call VMF_fnc_missionStart;
 			};
 		};
