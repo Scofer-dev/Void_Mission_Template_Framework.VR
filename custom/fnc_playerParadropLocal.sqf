@@ -33,10 +33,6 @@ params [
 	["_parachute","B_Parachute",[""]]
 ];
 
-if (_parachute isEqualTo "") then {
-	_parachute = "B_Parachute";
-}:
-
 player allowDamage false;
 
 player setVariable ["VMF_backpackData",[backpack player,backpackItems player]];
