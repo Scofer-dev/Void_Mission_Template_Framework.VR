@@ -31,9 +31,7 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
-if (playerSide == sideLogic) exitWith {
-    systemChat "Logic entities can't have this";
-};
+if (playerSide == sideLogic) exitWith {};
 
 params [
     ["_radioType","ACRE_PRC343",[""]],
@@ -42,7 +40,7 @@ params [
 
 private _spawnedRadios = missionNamespace getVariable ["VMF_spawnedRadios",[]];
 if (_radioType in _spawnedRadios) exitWith {
-    systemChat format ["You already spawned a %1 radio this life.",_radioType];
+    systemChat format ["You already spawned a %1 radio this life",_radioType];
 };
 
 if !(_radioType in [
@@ -65,9 +63,9 @@ private _loadout = getUnitLoadout player;
 private _uniformItems = (_loadout select 3) select 1;
 
 private _stringLength = count _radioType;
-private _radioCheck = _uniformItems findIf {(_x select 0) select [0,_stringLength] == _radioType};
+private _radioCheck = _uniformItems findIf {(_x select 0) select [0,_stringLength] isEqualTo _radioType};
 
-if (_radioCheck != -1) exitWith {
+if (_radioCheck isNotEqualTo -1) exitWith {
     systemChat format ["You already have a %1 radio",_radioType];
 };
 
