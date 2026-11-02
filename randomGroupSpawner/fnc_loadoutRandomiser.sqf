@@ -46,19 +46,19 @@ _equipmentData params [
 	["_backPackArray",[],[[]]]
 ];
 
-if (_helmetArray isNotEqualTo 0) then {
+if (_helmetArray isNotEqualTo []) then {
 	_loadout set [6,selectRandom _helmetArray];
 };
-if (_facewearArray isNotEqualTo 0) then {
+if (_facewearArray isNotEqualTo []) then {
 	_loadout set [7,selectRandom _facewearArray];
 };
-if (_uniformArray isNotEqualTo 0) then {
+if (_uniformArray isNotEqualTo []) then {
 	[_loadout,[3,0],selectRandom _uniformArray] call BIS_fnc_setNestedElement;
 };
-if (_vestArray isNotEqualTo 0) then {
+if (_vestArray isNotEqualTo []) then {
 	[_loadout,[4,0],selectRandom _vestArray] call BIS_fnc_setNestedElement;
 };
-if (_backpackArray isNotEqualTo 0) then {
+if (_backpackArray isNotEqualTo []) then {
 	[_loadout,[5,0],selectRandom _backpackArray] call BIS_fnc_setNestedElement;
 };
 
