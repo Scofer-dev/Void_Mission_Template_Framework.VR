@@ -156,6 +156,9 @@ if (_deleteGroups) then {
 	_arrayCount = _arrayCount + count _groupArray;
 
 	[RGS_groupPoolArray,[_arrayIndex,1],_arrayCount] call BIS_fnc_setNestedElement;
+
+	publicVariable ("RGS_groupPool_" + _poolName);
+	publicVariable ("RGS_groupEquipmentPool_" + _poolName);
 } forEach _poolNames;
 
 publicVariable "RGS_groupPoolArray";

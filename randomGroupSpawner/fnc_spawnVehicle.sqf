@@ -38,8 +38,8 @@ params [
 
 _spawnPos set [2,0];
 
-private _poolArray = [missionNamespace,("RGS_vehiclePool_" + _poolName),[]] call BIS_fnc_getServerVariable;
-private _equipmentData = [missionNamespace,("RGS_vehicleEquipmentPool_" + _poolName),[[],[],[],[],[]]] call BIS_fnc_getServerVariable;
+private _poolArray = missionNamespace getVariable ("RGS_vehiclePool_" + _poolName);
+private _equipmentData = missionNamespace getVariable ("RGS_vehicleEquipmentPool_" + _poolName);
 
 private _vehicleData = selectRandom _poolArray;
 

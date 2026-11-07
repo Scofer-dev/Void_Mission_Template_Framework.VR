@@ -112,7 +112,7 @@ if (RGS_vehiclePoolArray isEqualTo []) exitWith {
 
         private _spawnPos = (_this select 1) select 0;
         
-        [_poolName,_side,_separatePassengers,_spawnPos] call RGS_fnc_spawnVehicle;
+        [_poolName,_side,_separatePassengers,_spawnPos] spawn RGS_fnc_spawnVehicle;
     },
     {},
     [_spawnPos]

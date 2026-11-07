@@ -206,6 +206,9 @@ if (_deleteVehicles) then {
 	_arrayCount = _arrayCount + count _vehicleArray;
 
 	[RGS_vehiclePoolArray,[_arrayIndex,1],_arrayCount] call BIS_fnc_setNestedElement;
+
+	publicVariable ("RGS_vehiclePool_" + _poolName);
+	publicVariable ("RGS_vehicleEquipmentPool_" + _poolName);
 } forEach _poolNames;
 
 publicVariable "RGS_vehiclePoolArray";

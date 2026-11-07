@@ -31,8 +31,6 @@ Returns:
 Author:
     Scofer
 ---------------------------------------------------------------------------- */
-if !(isServer) exitWith {};
-
 params [
 	"_loadout",
 	"_equipmentData"

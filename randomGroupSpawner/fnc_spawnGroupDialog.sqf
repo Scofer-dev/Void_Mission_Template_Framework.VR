@@ -105,7 +105,7 @@ if (RGS_groupPoolArray isEqualTo []) exitWith {
 
         private _spawnPos = (_this select 1) select 0;
 
-        [_poolName,_side,_spawnPos] call RGS_fnc_spawnGroup;
+        [_poolName,_side,_spawnPos] spawn RGS_fnc_spawnGroup;
     },
     {},
     [_spawnPos]
